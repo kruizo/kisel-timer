@@ -5,18 +5,37 @@ import { motion } from "framer-motion";
 
 const Hearts = () => {
   const [positions, setPositions] = useState([]);
+  const [windowSize, setWindowSize] = useState({
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  });
 
-  useEffect(() => {
-    const generatedPositions = Array.from({ length: 20 }).map(() => ({
+  const generatePositions = (currentWindowSize) => {
+    const generatedPositions = Array.from({ length: 10 }).map(() => ({
       x:
         Math.random() > 0.5
-          ? Math.random() * (window.innerWidth * 0.2)
-          : window.innerWidth - Math.random() * (window.innerWidth * 0.2),
-      y: Math.random() * window.innerHeight,
+          ? Math.random() * (currentWindowSize.innerWidth * 0.2)
+          : currentWindowSize.innerWidth -
+            Math.random() * (currentWindowSize.innerWidth * 0.2),
+      y: Math.random() * currentWindowSize.innerHeight,
       size: Math.random() * 20 + 10,
       duration: Math.random() * 10 + 5,
     }));
     setPositions(generatedPositions);
+  };
+
+  useEffect(() => {
+    generatePositions(windowSize); // Initial positions
+    const handleResize = () => {
+      const newWindowSize = {
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      };
+      setWindowSize(newWindowSize);
+      generatePositions(newWindowSize); // Generate positions on resize
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

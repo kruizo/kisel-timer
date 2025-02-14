@@ -22,15 +22,15 @@ const Timer = () => {
 
   return (
     <motion.div
-      className="text-center"
+      className="text-center max-w-screen-lg px-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <h1 className="text-3xl italic font-light">
+      <h1 className="text-sm md:text-3xl italic font-light">
         In case you forgot kizel, we are
       </h1>
-      <h2 className="text-4xl my-10 font-mono">
+      <h2 className="text-lg md:text-4xl my-10 font-mono">
         {time.years} years, {time.months} months, {time.days} days,
         <br />
         {time.hours} hours, {time.minutes} minutes, {time.seconds} seconds.

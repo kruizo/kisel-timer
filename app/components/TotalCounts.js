@@ -47,8 +47,8 @@ const TotalCounts = () => {
   if (!time) return null;
 
   return (
-    <div className="text-center">
-      <div className="text-lg mt-4 flex gap-4">
+    <div className="text-center max-w-screen-lg px-6">
+      <div className="text-xs md:text-lg mt-4 flex gap-4">
         <p>Years: {totalCounts.totalYears}</p>
         <p>Months: {totalCounts.totalMonths}</p>
         <p>Days: {totalCounts.totalDays}</p>
